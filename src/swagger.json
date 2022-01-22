@@ -1,0 +1,249 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ignite Challenge Documentation SwaggerUI",
+    "description": "Nesse desafio, você deverá criar uma aplicação para treinar o que aprendeu até agora no Node.js! Utilizando uma aplicação já funcional como base, realize a documentação das rotas com o Swagger.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "luisgabrielmarchio75@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "admin": {
+                    "type": "boolean"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Name example",
+                  "email": "email@example.com",
+                  "admin": false
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "98895cc1-c79a-4fa2-989a-80d75fc5ecc6",
+                    "name": "Name example",
+                    "email": "email@example.com",
+                    "admin": false,
+                    "created_at": "2022-01-22T19:34:23.667Z",
+                    "updated_at": "2022-01-22T19:34:23.667Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User already exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "List All users",
+        "description": "List all users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": "98895cc1-c79a-4fa2-989a-80d75fc5ecc6",
+                      "name": "Name example 1",
+                      "email": "email_one@example.com",
+                      "admin": false,
+                      "created_at": "2022-01-22T19:34:23.667Z",
+                      "updated_at": "2022-01-22T19:34:23.667Z"
+                    },
+                    {
+                      "id": "afcea22c-ab71-4245-addd-ba58c87cefaa",
+                      "name": "Name example 2",
+                      "email": "email_two@example.com",
+                      "admin": true,
+                      "created_at": "2022-01-22T19:40:41.506Z",
+                      "updated_at": "2022-01-22T19:40:41.506Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User does not exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "List User By Id",
+        "description": "List user by id",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "Request user information by id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "98895cc1-c79a-4fa2-989a-80d75fc5ecc6",
+                    "name": "Name example 1",
+                    "email": "email_one@example.com",
+                    "admin": false,
+                    "created_at": "2022-01-22T19:34:23.667Z",
+                    "updated_at": "2022-01-22T19:34:23.667Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User does not exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
